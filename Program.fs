@@ -1,13 +1,28 @@
 // Learn more about F# at http://docs.microsoft.com/dotnet/fsharp
 
 open System
+open System.IO
 
-// Define a function to construct a message to print
-let from whom =
-    sprintf "from %s" whom
+type Cell =
+    | CompletedCell of int
+    | EmptyCell
+
+module Cell =
+    let create n =
+        if 1 <= n && n <= 9
+        then CompletedCell n
+        else EmptyCell
+
+    let render cell =
+        let value =
+            match cell with
+            | CompletedCell n -> 0x30 + n
+            | EmptyCell -> 0x20
+        Convert.ToChar value
 
 [<EntryPoint>]
 let main argv =
-    let message = from "F#" // Call the function
-    printfn "Hello world %s" message
-    0 // return an integer exit code
+    let token = 1 |> Cell.create |> Cell.render
+    do printfn "Token: %A" token
+
+    0
