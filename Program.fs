@@ -4,7 +4,8 @@ open Sudoku
 [<EntryPoint>]
 let main argv =
     let sudokuBoardText = File.ReadAllText "sudoku.txt"
-    do printfn "%s" sudokuBoardText
+    let empty c = match c with '.' -> ' ' | _ -> c
+    do printfn "%s" (sudokuBoardText |> String.map empty)
 
     let token0 = 0 |> Cell.input |> Cell.render
     do printfn "0 |> Cell.input |> Cell.render: %s" token0
