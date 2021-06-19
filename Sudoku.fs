@@ -6,20 +6,17 @@ type Cell =
     | EmptyCell
 
 module Cell =
-    let private check n =
-        if 1 <= n && n <= 9
-        then Some n
-        else None
+    let private check n = 1 <= n && n <= 9
 
     let provide n =
-        match check n with
-        | Some _ -> ProvidedCell n
-        | None -> failwith "Invalid value for ProvidedCell"
+        if check n
+        then ProvidedCell n
+        else failwith "Invalid value for ProvidedCell"
 
     let input n =
-        match check n with
-        | Some _ -> InputCell n
-        | None -> EmptyCell
+        if check n
+        then InputCell n
+        else EmptyCell
 
     let render cell =
         match cell with
