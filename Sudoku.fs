@@ -11,7 +11,7 @@ module Cell =
     let provide n =
         if check n
         then ProvidedCell n
-        else failwith "Invalid value for ProvidedCell"
+        else EmptyCell
 
     let input n =
         if check n
