@@ -1,5 +1,7 @@
 namespace Sudoku
 
+open System.Collections
+
 type Cell =
     | ProvidedCell of int
     | InputCell of int
@@ -53,9 +55,9 @@ module Board =
             | 2, 1 -> board.[6..8, 3..5]
             | 2, 2 -> board.[6..8, 6..8]
             | _, _ -> failwith "Unexpected coordinates"
-        let column = board.[x, *]
-        let row = board.[*, y]
+        let column: Cell[] = board.[x, *]
+        let row: Cell[] = board.[*, y]
 
-        let sumCells = Seq.cast<Cell> >> Seq.map Cell.value >> Seq.sum
+        let sumCells: (IEnumerable -> int) = Seq.cast<Cell> >> Seq.map Cell.value >> Seq.sum
 
         sumCells subgrid = 45 && sumCells column = 45 && sumCells row = 45
