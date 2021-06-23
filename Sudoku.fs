@@ -25,3 +25,11 @@ module Cell =
             sprintf "\x1b[1m%d\x1b[0m" n
         | InputCell n -> sprintf "%d" n
         | EmptyCell -> " "
+
+// Elimination by Unique Value
+//     Column of the Cell
+//     Row of the Cell
+//     Grid of the Cell
+// Elimination by Overlap
+//     Existing values
+//     Existing values AND pencil'd values (vector)
