@@ -18,4 +18,23 @@ let main argv =
     let cells = [0..9] |> List.map Cell.input
     do printfn "All Cells:\n%A" cells
 
+    let board =
+        array2D [
+            [0; 0; 0;  1; 0; 0;  0; 0; 0]
+            [0; 0; 0;  2; 0; 0;  0; 0; 0]
+            [0; 0; 0;  9; 0; 0;  0; 0; 0]
+
+            [0; 0; 0;  7; 0; 0;  0; 0; 0]
+            [0; 0; 0;  8; 0; 0;  0; 0; 0]
+            [0; 0; 0;  3; 0; 0;  0; 0; 0]
+
+            [0; 0; 0;  5; 0; 0;  0; 0; 0]
+            [0; 0; 0;  4; 0; 0;  0; 0; 0]
+            [0; 0; 0;  6; 0; 0;  0; 0; 0]
+        ] |> Board.create
+    do printfn "Sample board:\n%A" board
+
+    do Board.guess 4 (0, 0) board
+    do printfn "Board After Guess:\n%A" board
+
     0
