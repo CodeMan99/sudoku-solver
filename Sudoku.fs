@@ -34,12 +34,14 @@ module Cell =
         | InputCell n -> sprintf "%d" n
         | EmptyCell -> " "
 
+type CellLocation = int * int
+
 module Board =
     let create puzzle =
         puzzle
         |> Array2D.map Cell.provide
 
-    let guess value (x, y) (board: Cell[,]) =
+    let guess value ((x, y): CellLocation) (board: Cell[,]) =
         board.[x, y] <- Cell.input value
 
     let check (x, y) (board: Cell[,]) =
